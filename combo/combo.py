@@ -8,10 +8,13 @@ import itertools as it
 
 with open('combo.in') as f:
     n = int(f.readline())
-    c1 = map(int, f.readline().split())
-    c2 = map(int, f.readline().split())
+    c1 = tuple(map(int, f.readline().split()))
+    c2 = tuple(map(int, f.readline().split()))
 
-def sum_tuples(t1, t2):
-    return 
+def sum_tuples(a):
+    return tuple(map(sum, zip(*a)))
 
-it.product([-2, -1, 0, 1, 2], repeat=3)
+print(len(set(it.chain(
+        map(sum_tuples, zip(it.repeat(c1), it.product([-2, -1, 0, 1, 2], repeat=3))),
+        map(sum_tuples, zip(it.repeat(c2), it.product([-2, -1, 0, 1, 2], repeat=3)))
+))), file=open('combo.out', 'w'))
