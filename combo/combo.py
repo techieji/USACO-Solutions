@@ -12,7 +12,7 @@ with open('combo.in') as f:
     c2 = tuple(map(int, f.readline().split()))
 
 def sum_tuples(a):
-    return tuple(map(sum, zip(*a)))
+    return tuple(x % n for x in map(sum, zip(*a)))
 
 print(len(set(it.chain(
         map(sum_tuples, zip(it.repeat(c1), it.product([-2, -1, 0, 1, 2], repeat=3))),
